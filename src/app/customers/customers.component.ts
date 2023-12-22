@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {CustomerService} from "../services/customer.service";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-customers',
@@ -9,7 +10,7 @@ import {CustomerService} from "../services/customer.service";
 })
 export class CustomersComponent implements OnInit{
 
-  customers : any;
+  customers! : Observable<any>;
   errorMessage! : object;
  // errorMessage : string | undefined;
 
@@ -17,14 +18,16 @@ export class CustomersComponent implements OnInit{
   }
 
   ngOnInit(): void {
-      this.customerService.getCustomers().subscribe({
+   /*   this.customerService.getCustomers().subscribe({
         next : data=>{
           this.customers = data;
         },error : err=>{
           this.errorMessage=err.message;
         }
 
-      });
+      });*/
+
+    this.customers = this.customerService.getCustomers();
   }
 
 }
