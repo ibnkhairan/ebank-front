@@ -1,3 +1,45 @@
-<div class="container">
-{{customer | json}}
+<div class="container mt-2">
+  <div class="row">
+    <div class="card">
+      <div class="card-header"> Customer Accounts</div>
+      <div class="card-body">
+        <table class="table">
+          <thead>
+            <th>CustomerId</th><th>name</th><th>email</th><th>BankAccountId</th><th>balance</th><th>type</th><th>createdAt</th><th>status</th><th>overDraft</th><th>interestRate</th>
+          </thead>
+          <tbody>
+              <tr *ngFor="let c of this.customerAccounts">
+                <td>{{c.customerDTO.id}}</td>
+                <td>{{c.customerDTO.name}}</td>
+                <td>{{c.customerDTO.email}}</td>
+                <td>{{c.id}}</td>
+                <td>{{c.balance}}</td>
+                <td>{{c.type}}</td>
+                <td>{{c.createdAt}}</td>
+                <td>{{c.status}}</td>
+                <td>{{c.overDraft}}</td>
+                <td>{{c.interestRate}}</td>
+              </tr>
+          </tbody>
+        </table>
+
+      </div>
+
+    </div>
+  </div>
+
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

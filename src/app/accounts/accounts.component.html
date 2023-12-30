@@ -15,14 +15,14 @@
             </div>
           </form>
           <ng-template #errorTemplate>
-            <ng-container *ngIf="errorMessage ; else loading">
+            <ng-container *ngIf="!!errorMessage ; else loading">
               <div class="text-danger">{{errorMessage}}</div>
             </ng-container>
             <ng-template #loading>
               Loading ...
             </ng-template>
           </ng-template>
-          <ng-container *ngIf="accountObservable | async as accountDetails"><!-- ; else errorTemplate">-->
+          <ng-container *ngIf="accountObservable | async as accountDetails; else errorTemplate"><!-- ; else errorTemplate">-->
             <div class="mb-2">
               <label>Account ID : </label>
               <label class="m-lg-1"><strong> {{ accountDetails.accountId}}</strong></label>
@@ -55,7 +55,7 @@
       </div>
     </div>
     <div class="col col-md-6">
-        <div class="card" *ngIf="accountObservable">
+        <div class="card" *ngIf="accountObservable && !errorMessage"> <!--; else errorFromBack-->
           <div class="card-header">Operations</div>
           <div class="card-body">
             <form [formGroup]="operationsFormGroup" (ngSubmit)="handleAccountOperation()" method="post">
@@ -73,7 +73,7 @@
                 <label class="form-check-label">TRANSFERT:</label>
               </div>
               <div class="mb-3" *ngIf="operationsFormGroup.value.operationType=='TRANSFERT'">
-                {{accountFormGroup.value.accountId}}
+
                 <label class="form-label">Account Destination :</label>
                 <input type="text" formControlName="accountDestination" class="form-control">
               </div>
@@ -93,6 +93,7 @@
 
         </div>
     </div>
+
   </div>
 
 </div>

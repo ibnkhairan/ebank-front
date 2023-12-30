@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {environment} from "../../environments/environment";
 import {Observable} from "rxjs";
 import {AccountDetails} from "../model/account.model";
+import {CustomerBankAccount} from "../model/customer-account";
 
 @Injectable({
   providedIn: 'root'
@@ -35,4 +36,10 @@ export class AccountsService {
     return this.http.post(`${environment.backendHost}/accounts/transfert`,data);
 
   }
+
+  public getCustomerAccounts(customerId : number):Observable<Array<CustomerBankAccount>>{
+    return this.http.get<Array<CustomerBankAccount>>(`${environment.backendHost}/customer-accounts/${customerId}`);
+  }
+
+
 }

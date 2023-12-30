@@ -68,6 +68,7 @@ export class AccountsComponent implements OnInit{
             this.operationsFormGroup.reset();
             this.handleSearchAccount();
           },error : err => {
+            this.errorMessage = err;
             console.log(err);
           }
         });
@@ -78,6 +79,7 @@ export class AccountsComponent implements OnInit{
           this.operationsFormGroup.reset();
           this.handleSearchAccount();
         },error : err => {
+          this.errorMessage = err.message;
           console.log(err);
         }
       });
@@ -91,6 +93,7 @@ export class AccountsComponent implements OnInit{
           this.handleSearchAccount();
         },
         error : (err)=>{
+          this.errorMessage = err;
           console.log(err);
         }
       });
